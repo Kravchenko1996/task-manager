@@ -1,0 +1,24 @@
+<mat-card *ngFor="let toDoList of toDoLists" class="toDoCard">
+  <mat-card-header>
+    <mat-card-title>{{toDoList.name}}</mat-card-title>
+    <div class="correction-column">
+      <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editToDoList(toDoList)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="del-btn" (click)="deleteToDoList(toDoList)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+  <form class="task">
+    <mat-form-field class="example-full-width">
+      <mat-label>Task</mat-label>
+      <input matInput placeholder="Start typing here to create a task...">
+    </mat-form-field>
+  </form>
+</mat-card>
+
+
+<div>
+  <button mat-flat-button color="primary" (click)="createToDoList()">Add TODO List</button>
+</div>

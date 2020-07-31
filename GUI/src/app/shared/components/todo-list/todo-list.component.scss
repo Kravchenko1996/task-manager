@@ -1,0 +1,30 @@
+div {
+  padding-top: 16px;
+  text-align: center;
+}
+
+.toDoCard {
+  background-color: #4e4d4d;
+  margin: 16px 200px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  mat-card-title {
+    margin-bottom: 0;
+  }
+}
+
+.correction-column {
+  padding-top: 0;
+}
+
+.task {
+  display: flex;
+  .mat-form-field {
+    width: 100%;
+  }
+}

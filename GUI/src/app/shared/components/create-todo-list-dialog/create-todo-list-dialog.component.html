@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <p>Name your list</p>
+  <mat-form-field>
+    <mat-label>ToDo List</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [mat-dialog-close]="data.name">Submit</button>
+</div>
