@@ -4,24 +4,25 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-edit-todo-list-dialog',
-  templateUrl: './edit-todo-list-dialog.component.html',
-  styleUrls: ['./edit-todo-list-dialog.component.scss']
+  templateUrl: './edit-dialog.component.html',
+  styleUrls: ['./edit-dialog.component.scss']
 })
-export class EditToDoListDialogComponent implements OnInit {
+export class EditDialogComponent implements OnInit {
 
-  ToDoListForm: FormGroup;
+  itemForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<EditToDoListDialogComponent>,
+    public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
   }
 
   ngOnInit(): void {
-    this.ToDoListForm = this.formBuilder.group({
+    this.itemForm = this.formBuilder.group({
       id: [this.data.id],
-      name: [this.data.name, Validators.required]
+      name: [this.data.name, Validators.required],
+      project_id: [this.data.project]
     })
   }
 
@@ -30,8 +31,8 @@ export class EditToDoListDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.ToDoListForm.valid) {
-      this.dialogRef.close(this.ToDoListForm.value);
+    if (this.itemForm.valid) {
+      this.dialogRef.close(this.itemForm.value);
     }
   }
 

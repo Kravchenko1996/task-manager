@@ -10,12 +10,7 @@
       </button>
     </div>
   </mat-card-header>
-  <form class="task">
-    <mat-form-field class="example-full-width">
-      <mat-label>Task</mat-label>
-      <input matInput placeholder="Start typing here to create a task...">
-    </mat-form-field>
-  </form>
+<app-create-task [toDoListId]="toDoList.id"></app-create-task>
 </mat-card>
 
 

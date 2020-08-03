@@ -1,6 +1,6 @@
 <div mat-dialog-content>
-  <p>Rename your list</p>
-  <form [formGroup]="ToDoListForm">
+  <p>Rename</p>
+  <form [formGroup]="itemForm">
     <mat-form-field>
       <mat-label>Name:</mat-label>
       <input type="text" matInput aria-label="Name" formControlName="name">
@@ -12,5 +12,5 @@
   <button mat-raised-button
           color="primary"
           (click)="onSubmit()"
-          [disabled]="ToDoListForm.invalid">Submit</button>
+          [disabled]="itemForm.invalid">Submit</button>
 </div>

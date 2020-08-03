@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditToDoListDialogComponent } from './edit-todo-list-dialog.component';
+import { EditDialogComponent } from './edit-dialog.component';
 
 describe('EditToDoListDialogComponent', () => {
-  let component: EditToDoListDialogComponent;
-  let fixture: ComponentFixture<EditToDoListDialogComponent>;
+  let component: EditDialogComponent;
+  let fixture: ComponentFixture<EditDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditToDoListDialogComponent ]
+      declarations: [ EditDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditToDoListDialogComponent);
+    fixture = TestBed.createComponent(EditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

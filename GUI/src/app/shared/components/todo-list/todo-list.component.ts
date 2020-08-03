@@ -4,7 +4,7 @@ import {CreateToDoListDialogComponent} from "../create-todo-list-dialog/create-t
 import {FormBuilder, Validators} from "@angular/forms";
 import {ApiService} from "../../../core/services/api.service";
 import {ToDoList} from "../../interfaces/todo-list";
-import {EditToDoListDialogComponent} from "../edit-todo-list-dialog/edit-todo-list-dialog.component";
+import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowledgement-dialog.component";
 
 @Component({
@@ -52,15 +52,13 @@ export class TodoListComponent implements OnInit {
         ToDoListData = {name: result};
         if (ToDoListData) {
           this.api.sendNewToDoListData(ToDoListData)
-            .subscribe((response) => {
-              this.toDoLists.push(response);
-            })
+            .subscribe(response => this.toDoLists.push(response))
         }
       })
   }
 
   editToDoList(toDoList: ToDoList): void {
-    let dialogWindow = this.dialog.open(EditToDoListDialogComponent, {
+    let dialogWindow = this.dialog.open(EditDialogComponent, {
       width: '250px',
       data: new ToDoList().deserialize(toDoList)
     });

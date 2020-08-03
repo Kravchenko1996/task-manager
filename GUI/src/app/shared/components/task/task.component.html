@@ -1,0 +1,28 @@
+<div class="create-task">
+  <form class="mat-form-field">
+    <mat-form-field>
+      <mat-label>Task</mat-label>
+      <input matInput placeholder="Start typing here to create a task..."
+             #taskForm>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button color="primary"
+          class="mat-ripple"
+          (click)="createTask(taskForm.value)">Create
+  </button>
+</div>
+<mat-selection-list *ngFor="let task of tasksList">
+  <mat-list-option>
+    {{task.name}}
+  </mat-list-option>
+
+  <div class="correction-column">
+    <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editTask(task)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="delete" class="del-btn" (click)="deleteTask(task)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+</mat-selection-list>

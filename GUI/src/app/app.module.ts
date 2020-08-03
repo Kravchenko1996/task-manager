@@ -13,9 +13,11 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
-import {EditToDoListDialogComponent} from './shared/components/edit-todo-list-dialog/edit-todo-list-dialog.component';
+import {EditDialogComponent} from './shared/components/edit-dialog/edit-dialog.component';
 import {MatIconModule} from "@angular/material/icon";
 import { AcknowledgementDialogComponent } from './shared/components/acknowledgement-dialog/acknowledgement-dialog.component';
+import { TaskComponent } from './shared/components/task/task.component';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { AcknowledgementDialogComponent } from './shared/components/acknowledgem
     TodoListComponent,
     MainComponent,
     CreateToDoListDialogComponent,
-    EditToDoListDialogComponent,
-    AcknowledgementDialogComponent
+    EditDialogComponent,
+    AcknowledgementDialogComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AcknowledgementDialogComponent } from './shared/components/acknowledgem
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

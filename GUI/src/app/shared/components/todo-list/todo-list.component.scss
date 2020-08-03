@@ -5,7 +5,7 @@ div {
 
 .toDoCard {
   background-color: #4e4d4d;
-  margin: 16px 200px;
+  margin: 16px 400px;
 }
 
 mat-card-header {
@@ -22,9 +22,5 @@ mat-card-header {
   padding-top: 0;
 }
 
-.task {
-  display: flex;
-  .mat-form-field {
-    width: 100%;
-  }
-}
+
+

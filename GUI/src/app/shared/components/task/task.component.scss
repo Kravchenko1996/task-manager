@@ -1,0 +1,13 @@
+.create-task {
+  margin: 0 16px;
+  display: flex;
+  .mat-form-field {
+    width: calc(100% - 16px);
+    font-size: 18px;
+  }
+  .mat-ripple {
+    width: 15%;
+    height: 40px;
+    margin-top: 12px;
+  }
+}
