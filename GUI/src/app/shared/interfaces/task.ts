@@ -4,9 +4,8 @@ import {ToDoList} from "./todo-list";
 export class Task implements Deserializable {
   id: number;
   name: string;
-  status: string;
+  status: boolean;
   deadline: string;
-  completed: boolean;
   toDoList: ToDoList;
 
   deserialize(input: object) {

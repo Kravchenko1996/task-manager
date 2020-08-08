@@ -13,5 +13,7 @@ urlpatterns = [
     path('tasks', TasksListAPIView.as_view()),
     path('create-task', TaskCreateAPIView.as_view()),
     path('edit-task/<str:pk>', EditTaskAPIVIew.as_view()),
-    path('delete-task/<str:pk>', DeleteTaskAPIView.as_view())
+    path('delete-task/<str:pk>', DeleteTaskAPIView.as_view()),
+    path('change-task-status/<str:pk>', EditTaskAPIVIew.as_view()),
+    path('set-task-deadline/<str:pk>', EditTaskAPIVIew.as_view())
 ]

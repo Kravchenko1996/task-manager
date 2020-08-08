@@ -29,7 +29,7 @@ class DeleteToDoListAPIView(DestroyAPIView):
 
 class TasksListAPIView(ListAPIView):
     serializer_class = TaskListSerializer
-    queryset = Task.objects.order_by('-id')
+    queryset = Task.objects.order_by('id')
 
 
 class TaskCreateAPIView(CreateAPIView):
@@ -43,3 +43,4 @@ class EditTaskAPIVIew(UpdateAPIView):
 
 class DeleteTaskAPIView(DestroyAPIView):
     queryset = Task.objects.all()
+

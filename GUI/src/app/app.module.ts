@@ -18,6 +18,8 @@ import {MatIconModule} from "@angular/material/icon";
 import { AcknowledgementDialogComponent } from './shared/components/acknowledgement-dialog/acknowledgement-dialog.component';
 import { TaskComponent } from './shared/components/task/task.component';
 import {MatListModule} from "@angular/material/list";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -29,20 +31,22 @@ import {MatListModule} from "@angular/material/list";
     AcknowledgementDialogComponent,
     TaskComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatCardModule,
+        MatIconModule,
+        MatListModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

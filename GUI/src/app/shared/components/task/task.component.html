@@ -2,19 +2,33 @@
   <form class="mat-form-field">
     <mat-form-field>
       <mat-label>Task</mat-label>
-      <input matInput placeholder="Start typing here to create a task..."
-             #taskForm>
+      <input matInput
+             placeholder="Start typing here to create a task..."
+             name="newTask"
+             #taskForm
+             (keyup.enter)="createTask(taskForm.value)" [(ngModel)]="currentTask">
     </mat-form-field>
   </form>
   <button mat-raised-button color="primary"
           class="mat-ripple"
-          (click)="createTask(taskForm.value)">Create
+          (click)="createTask(taskForm.value)">ADD
   </button>
 </div>
-<mat-selection-list *ngFor="let task of tasksList">
-  <mat-list-option>
-    {{task.name}}
-  </mat-list-option>
+<div *ngFor="let task of tasksList" class="task">
+  <mat-selection-list (click)="changeTaskStatus(task)">
+    <div>
+      <mat-list-option [selected]="task.status">
+        {{task.name}}
+      </mat-list-option>
+    </div>
+  </mat-selection-list>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select a deadline</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="deadline" [(ngModel)]="task.deadline">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker (closed)="setTaskDeadline(task)"></mat-datepicker>
+  </mat-form-field>
 
   <div class="correction-column">
     <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editTask(task)">
@@ -25,4 +39,5 @@
     </button>
   </div>
 
-</mat-selection-list>
+
+</div>

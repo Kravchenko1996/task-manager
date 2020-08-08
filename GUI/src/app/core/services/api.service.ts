@@ -54,4 +54,14 @@ export class ApiService {
   deleteTaskData(taskId) {
     return this.httpClient.delete(this.apiUrl + '/delete-task/' + taskId.toString());
   }
+
+  changeTaskStatus(task: Task) {
+    return this.httpClient.patch(this.apiUrl + '/change-task-status/' + task.id.toString(), task)
+      .pipe(map((response) => new Task().deserialize(response)));
+  }
+
+  setTaskDeadline(task: Task) {
+    return this.httpClient.patch(this.apiUrl + '/set-task-deadline/' + task.id.toString(), task)
+      .pipe(map((response) => new Task().deserialize(response)));
+  }
 }

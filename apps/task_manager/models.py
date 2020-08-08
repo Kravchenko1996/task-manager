@@ -11,8 +11,8 @@ class Project(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=200)
-    # status = models.CharField(max_length=50)
-    # deadline = models.CharField(max_length=100)
+    status = models.BooleanField(default=False)
+    deadline = models.DateField(null=True, blank=True)
     # completed = models.BooleanField
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
