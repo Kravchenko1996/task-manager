@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TodoListComponent} from './shared/components/todo-list/todo-list.component';
 import {MainComponent} from './pages/main/main.component';
 import {MatButtonModule} from "@angular/material/button";
 import {CreateToDoListDialogComponent} from './shared/components/create-todo-list-dialog/create-todo-list-dialog.component';
@@ -24,17 +23,21 @@ import {TaskComponent} from "./shared/components/task/task.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {TodoListsComponent} from './shared/components/todo-lists/todo-lists.component';
+import {TodoListComponent} from "./shared/components/todo-list/todo-list.component";
+import {Resolver} from "./core/resolver/resolver";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent,
     MainComponent,
     CreateToDoListDialogComponent,
     EditDialogComponent,
     AcknowledgementDialogComponent,
     TaskComponent,
-    TasksComponent
+    TasksComponent,
+    TodoListComponent,
+    TodoListsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     MatToolbarModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [Resolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {

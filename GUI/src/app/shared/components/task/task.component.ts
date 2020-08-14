@@ -31,7 +31,6 @@ export class TaskComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   editTask(): void {

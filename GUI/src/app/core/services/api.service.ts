@@ -26,8 +26,8 @@ export class ApiService {
       .pipe(map((response) => new ToDoList().deserialize(response)));
   }
 
-  sendEditedToDoListData(toDolist: ToDoList) {
-    return this.httpClient.put(this.apiUrl + '/edit-todo-list/' + toDolist.id.toString(), toDolist)
+  sendEditedToDoListData(toDoList: ToDoList) {
+    return this.httpClient.put(this.apiUrl + '/edit-todo-list/' + toDoList.id.toString(), toDoList)
       .pipe(map((response) => new ToDoList().deserialize(response)));
   }
 

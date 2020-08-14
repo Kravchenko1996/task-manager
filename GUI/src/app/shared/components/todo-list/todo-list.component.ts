@@ -1,24 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {CreateToDoListDialogComponent} from "../create-todo-list-dialog/create-todo-list-dialog.component";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {ApiService} from "../../../core/services/api.service";
 import {ToDoList} from "../../interfaces/todo-list";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowledgement-dialog.component";
 
 @Component({
-  selector: 'app-create-todo-list',
+  selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
 
-  toDoLists: ToDoList[];
-
-  toDoListForm = this.formBuilder.group({
-    name: ['', Validators.required]
-  });
+  @Input() toDoList: ToDoList;
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     public dialog: MatDialog,
@@ -27,65 +23,33 @@ export class TodoListComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.getToDoLists();
-  }
-
-  getToDoLists(): void {
-    this.api.getToDoListsData()
-      .subscribe((response: ToDoList[]) => {
-        this.toDoLists = response;
-      })
-  }
-
-  createToDoList(): void {
-    let ToDoListData = {
-      ...this.toDoListForm.value
-    }
-    const dialogRef = this.dialog.open(CreateToDoListDialogComponent, {
-      width: '250px',
-      data: ToDoListData
-    });
-    dialogRef.afterClosed()
-      .subscribe((result) => {
-        console.log(result);
-        ToDoListData = {name: result};
-        if (ToDoListData) {
-          this.api.sendNewToDoListData(ToDoListData)
-            .subscribe(response => this.toDoLists.push(response))
-        }
-      })
-  }
-
-  editToDoList(toDoList: ToDoList): void {
+  editToDoList(): void {
     let dialogWindow = this.dialog.open(EditDialogComponent, {
       width: '250px',
-      data: new ToDoList().deserialize(toDoList)
+      data: new ToDoList().deserialize(this.toDoList)
     });
     dialogWindow.afterClosed()
       .subscribe((toDoList: ToDoList) => {
-        if (toDoList) {
-          this.api.sendEditedToDoListData(toDoList)
-            .subscribe(() => {
-              this.getToDoLists();
-            })
-        }
+        if (toDoList) this.updateToDoList();
       })
   }
 
-  deleteToDoList(toDoList: ToDoList): void {
+  deleteToDoList(): void {
     let dialogWindow = this.dialog.open(AcknowledgementDialogComponent, {
       width: '250px',
-      data: `Are you sure you want to delete "${toDoList.name}"?`
+      data: `Are you sure you want to delete "${this.toDoList.name}"?`
     });
     dialogWindow.afterClosed()
       .subscribe((result: boolean) => {
         if (result) {
-          this.api.deleteToDoListData(toDoList.id)
-            .subscribe(() => {
-              this.getToDoLists();
-            })
+          this.api.deleteToDoListData(this.toDoList.id)
+            .subscribe(() => this.onUpdate.emit())
         }
       })
+  }
+
+  updateToDoList() {
+    this.api.sendEditedToDoListData(this.toDoList)
+      .subscribe(() => this.onUpdate.emit());
   }
 }
