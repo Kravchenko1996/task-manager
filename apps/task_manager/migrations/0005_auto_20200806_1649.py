@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='task',
+            model_name='tasks',
             name='deadline',
             field=models.DateField(blank=True, null=True),
         ),

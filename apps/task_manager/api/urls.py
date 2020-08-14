@@ -10,10 +10,8 @@ urlpatterns = [
     path('create-todo-list', CreateToDoListAPIView.as_view()),
     path('edit-todo-list/<str:pk>', EditToDoListAPIVIew.as_view()),
     path('delete-todo-list/<str:pk>', DeleteToDoListAPIView.as_view()),
-    path('tasks', TasksListAPIView.as_view()),
-    path('create-task', TaskCreateAPIView.as_view()),
+    path('tasks/<str:pk>', TasksListAPIView.as_view()),
+    path('create-tasks', TaskCreateAPIView.as_view()),
     path('edit-task/<str:pk>', EditTaskAPIVIew.as_view()),
-    path('delete-task/<str:pk>', DeleteTaskAPIView.as_view()),
-    path('change-task-status/<str:pk>', EditTaskAPIVIew.as_view()),
-    path('set-task-deadline/<str:pk>', EditTaskAPIVIew.as_view())
+    path('delete-tasks/<str:pk>', DeleteTaskAPIView.as_view())
 ]

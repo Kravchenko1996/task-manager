@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   sendEditedToDoListData(toDolist: ToDoList) {
-    return this.httpClient.patch(this.apiUrl + '/edit-todo-list/' + toDolist.id.toString(), toDolist)
+    return this.httpClient.put(this.apiUrl + '/edit-todo-list/' + toDolist.id.toString(), toDolist)
       .pipe(map((response) => new ToDoList().deserialize(response)));
   }
 
@@ -35,33 +35,23 @@ export class ApiService {
     return this.httpClient.delete(this.apiUrl + '/delete-todo-list/' + toDoListId.toString());
   }
 
-  getTasksData(): any {
-    return this.httpClient.get(this.apiUrl + '/tasks')
+  getTasksData(toDoListId): any {
+    return this.httpClient.get(this.apiUrl + '/tasks/' + toDoListId.toString())
       .pipe(map((response: any) => (
         response.map((task: Task) => new Task().deserialize(task)))));
   }
 
   sendNewTaskData(formData) {
-    return this.httpClient.post(this.apiUrl + '/create-task', formData)
+    return this.httpClient.post(this.apiUrl + '/create-tasks', formData)
       .pipe(map((response) => new Task().deserialize(response)));
   }
 
   sendEditedTaskData(task: Task) {
-    return this.httpClient.patch(this.apiUrl + '/edit-task/' + task.id.toString(), task)
+    return this.httpClient.put(this.apiUrl + '/edit-task/' + task.id.toString(), task)
       .pipe(map((response) => new Task().deserialize(response)));
   }
 
   deleteTaskData(taskId) {
-    return this.httpClient.delete(this.apiUrl + '/delete-task/' + taskId.toString());
-  }
-
-  changeTaskStatus(task: Task) {
-    return this.httpClient.patch(this.apiUrl + '/change-task-status/' + task.id.toString(), task)
-      .pipe(map((response) => new Task().deserialize(response)));
-  }
-
-  setTaskDeadline(task: Task) {
-    return this.httpClient.patch(this.apiUrl + '/set-task-deadline/' + task.id.toString(), task)
-      .pipe(map((response) => new Task().deserialize(response)));
+    return this.httpClient.delete(this.apiUrl + '/delete-tasks/' + taskId.toString());
   }
 }

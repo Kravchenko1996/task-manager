@@ -15,11 +15,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
 import {EditDialogComponent} from './shared/components/edit-dialog/edit-dialog.component';
 import {MatIconModule} from "@angular/material/icon";
-import { AcknowledgementDialogComponent } from './shared/components/acknowledgement-dialog/acknowledgement-dialog.component';
-import { TaskComponent } from './shared/components/task/task.component';
+import {AcknowledgementDialogComponent} from './shared/components/acknowledgement-dialog/acknowledgement-dialog.component';
 import {MatListModule} from "@angular/material/list";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {TasksComponent} from "./shared/components/tasks/tasks.component";
+import {TaskComponent} from "./shared/components/task/task.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -29,24 +33,28 @@ import {MatNativeDateModule} from "@angular/material/core";
     CreateToDoListDialogComponent,
     EditDialogComponent,
     AcknowledgementDialogComponent,
-    TaskComponent
+    TaskComponent,
+    TasksComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatCardModule,
-        MatIconModule,
-        MatListModule,
-        MatDatepickerModule,
-        MatNativeDateModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

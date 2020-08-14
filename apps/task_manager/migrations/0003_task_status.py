@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='task',
+            model_name='tasks',
             name='status',
             field=models.BooleanField(default=False),
         ),

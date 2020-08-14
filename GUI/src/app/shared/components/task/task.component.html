@@ -1,43 +1,23 @@
-<div class="create-task">
-  <form class="mat-form-field">
-    <mat-form-field>
-      <mat-label>Task</mat-label>
-      <input matInput
-             placeholder="Start typing here to create a task..."
-             name="newTask"
-             #taskForm
-             (keyup.enter)="createTask(taskForm.value)" [(ngModel)]="currentTask">
-    </mat-form-field>
-  </form>
-  <button mat-raised-button color="primary"
-          class="mat-ripple"
-          (click)="createTask(taskForm.value)">ADD
-  </button>
-</div>
-<div *ngFor="let task of tasksList" class="task">
-  <mat-selection-list (click)="changeTaskStatus(task)">
-    <div>
-      <mat-list-option [selected]="task.status">
-        {{task.name}}
-      </mat-list-option>
-    </div>
-  </mat-selection-list>
+<mat-toolbar>
 
-  <mat-form-field appearance="fill">
+  <mat-checkbox (ngModelChange)="changeTaskStatus()" [ngModel]="task.status"></mat-checkbox>
+
+  <span>{{task.name}}</span>
+
+  <span class="example-spacer"></span>
+
+  <mat-form-field appearance="fill" class="custom-datepicker">
     <mat-label>Select a deadline</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="deadline" [(ngModel)]="task.deadline">
+    <input matInput [matDatepicker]="picker" [formControl]="deadline" aria-label="date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker (closed)="setTaskDeadline(task)"></mat-datepicker>
+    <mat-datepicker #picker (closed)="setTaskDeadline()"></mat-datepicker>
   </mat-form-field>
 
-  <div class="correction-column">
-    <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editTask(task)">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="delete" class="del-btn" (click)="deleteTask(task)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
-
-
-</div>
+  <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editTask()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="delete" class="del-btn" (click)="deleteTask()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-divider></mat-divider>

@@ -7,6 +7,7 @@ export class Task implements Deserializable {
   status: boolean;
   deadline: string;
   toDoList: ToDoList;
+  order: number = 0;
 
   deserialize(input: object) {
     Object.assign(this, input);

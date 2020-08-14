@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='task',
+            model_name='tasks',
             name='deadline',
         ),
         migrations.RemoveField(
-            model_name='task',
+            model_name='tasks',
             name='status',
         ),
     ]
