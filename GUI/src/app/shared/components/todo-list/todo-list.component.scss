@@ -1,16 +1,13 @@
-:host  {
+:host {
   display: block;
-}
-
-div {
-  padding: 16px;
-  text-align: center;
+  margin: 32px 200px;
 }
 
 .toDoCard {
   background-color: #4e4d4d;
   margin: 16px 100px;
 }
+
 
 mat-card-header {
   display: flex;

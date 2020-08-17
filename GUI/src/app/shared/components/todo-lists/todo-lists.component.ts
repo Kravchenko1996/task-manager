@@ -12,7 +12,6 @@ import {ApiService} from "../../../core/services/api.service";
 })
 export class TodoListsComponent implements OnInit {
 
-  toDoList: ToDoList;
   toDoLists: ToDoList[] = [];
   toDoListForm = this.formBuilder.group({
     name: ['', Validators.required]
@@ -35,20 +34,21 @@ export class TodoListsComponent implements OnInit {
   }
 
   createToDoList(): void {
-    let ToDoListData = {
+    let toDoListData = {
       ...this.toDoListForm.value
     }
     const dialogRef = this.dialog.open(CreateToDoListDialogComponent, {
       width: '250px',
-      data: ToDoListData
+      data: toDoListData
     });
     dialogRef.afterClosed()
       .subscribe((result) => {
-        console.log(result);
-        ToDoListData = {name: result};
-        if (ToDoListData) {
-          this.api.sendNewToDoListData(ToDoListData)
-            .subscribe(response => this.toDoLists.push(response))
+        if (result) {
+          toDoListData = {name: result};
+          if (toDoListData) {
+            this.api.sendNewToDoListData(toDoListData)
+              .subscribe(response => this.toDoLists.push(response))
+          }
         }
       })
   }

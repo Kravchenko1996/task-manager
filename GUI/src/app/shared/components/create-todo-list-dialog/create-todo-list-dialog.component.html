@@ -7,5 +7,8 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()" [mat-dialog-close]="data.name">Submit</button>
+  <button mat-raised-button
+          color="primary"
+          [mat-dialog-close]="data.name"
+          [disabled]="!data.name">Submit</button>
 </div>

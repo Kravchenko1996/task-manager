@@ -25,7 +25,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {TodoListsComponent} from './shared/components/todo-lists/todo-lists.component';
 import {TodoListComponent} from "./shared/components/todo-list/todo-list.component";
-import {Resolver} from "./core/resolver/resolver";
 
 @NgModule({
   declarations: [
@@ -58,7 +57,6 @@ import {Resolver} from "./core/resolver/resolver";
     MatToolbarModule,
     DragDropModule
   ],
-  providers: [Resolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {
