@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {ToDoList} from '../../../shared/interfaces/todo-list';
+import {Task} from '../../../shared/interfaces/task';
 import {map} from "rxjs/operators";
-import {ToDoList} from "../../shared/interfaces/todo-list";
-import {Task} from "../../shared/interfaces/task";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = "http://127.0.0.1:8000/api/v1beta"
+  apiUrl = 'http://127.0.0.1:8000/api/v1beta';
 
   constructor(
     private httpClient: HttpClient
@@ -17,8 +17,12 @@ export class ApiService {
 
   getToDoListsData(): any {
     return this.httpClient.get(this.apiUrl + '/todo-lists')
-      .pipe(map((response: ToDoList[]) => response
-        .map((item: ToDoList) => new ToDoList().deserialize(item))));
+      .pipe(map((response: ToDoList[]) =>
+        response
+          .map(
+            (item: ToDoList) => new ToDoList().deserialize(item)
+          )
+      ));
   }
 
   sendNewToDoListData(formData): any {

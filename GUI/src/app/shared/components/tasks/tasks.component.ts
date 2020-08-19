@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ApiService} from "../../../core/services/api.service";
+import {ApiService} from "../../../core/services/api-service/api.service";
 import {Task} from '../../interfaces/task';
 import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";

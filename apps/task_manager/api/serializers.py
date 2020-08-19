@@ -12,13 +12,13 @@ class ProjectSerializer(ModelSerializer):
 class TaskSerializer(ModelSerializer):
     class Meta:
         model = Task
-        fields = ['id', 'name', 'status', 'deadline', 'project']
+        fields = ['id', 'name', 'status', 'deadline', 'order', 'project']
 
 
 class TaskListSerializer(ModelSerializer):
     class Meta:
         model = Task
-        fields = ['id', 'name', 'status', 'deadline', 'project']
+        fields = ['id', 'name', 'status', 'deadline', 'order', 'project']
 
     def get_project(self, instance: Task):
         return ProjectSerializer(instance.project).data

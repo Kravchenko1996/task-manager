@@ -3,7 +3,7 @@ import {ToDoList} from "../../interfaces/todo-list";
 import {CreateToDoListDialogComponent} from "../create-todo-list-dialog/create-todo-list-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, Validators} from "@angular/forms";
-import {ApiService} from "../../../core/services/api.service";
+import {ApiService} from "../../../core/services/api-service/api.service";
 
 @Component({
   selector: 'app-todo-lists',
@@ -30,7 +30,10 @@ export class TodoListsComponent implements OnInit {
 
   getToDoLists(): void {
     this.api.getToDoListsData()
-      .subscribe((response: ToDoList[]) => this.toDoLists = response);
+      .subscribe((response: ToDoList[]) => {
+        console.log(response)
+        this.toDoLists = response
+      });
   }
 
   createToDoList(): void {

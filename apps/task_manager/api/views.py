@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from apps.task_manager.api.serializers import ProjectSerializer, TaskSerializer, TaskListSerializer
 from apps.task_manager.models import Project, Task

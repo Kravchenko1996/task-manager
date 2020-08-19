@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder} from "@angular/forms";
-import {ApiService} from "../../../core/services/api.service";
+import {ApiService} from "../../../core/services/api-service/api.service";
 import {ToDoList} from "../../interfaces/todo-list";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowledgement-dialog.component";

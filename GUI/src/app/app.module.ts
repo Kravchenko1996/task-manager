@@ -10,7 +10,7 @@ import {CreateToDoListDialogComponent} from './shared/components/create-todo-lis
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
 import {EditDialogComponent} from './shared/components/edit-dialog/edit-dialog.component';
 import {MatIconModule} from "@angular/material/icon";
@@ -25,6 +25,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {TodoListsComponent} from './shared/components/todo-lists/todo-lists.component';
 import {TodoListComponent} from "./shared/components/todo-list/todo-list.component";
+import {AuthComponent} from './pages/auth/auth.component';
+import {LoginComponent} from './pages/login/login.component';
+import {LogoutComponent} from './pages/logout/logout.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {ApiInterceptor} from "./core/http.interceptor";
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import {TodoListComponent} from "./shared/components/todo-list/todo-list.compone
     TaskComponent,
     TasksComponent,
     TodoListComponent,
-    TodoListsComponent
+    TodoListsComponent,
+    AuthComponent,
+    LoginComponent,
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +65,11 @@ import {TodoListComponent} from "./shared/components/todo-list/todo-list.compone
     MatCheckboxModule,
     MatToolbarModule,
     DragDropModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

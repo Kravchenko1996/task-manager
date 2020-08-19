@@ -6,7 +6,8 @@
              placeholder="Start typing here to create a task..."
              name="newTask"
              #taskForm
-             (keyup.enter)="createTask(taskForm.value)" [(ngModel)]="currentTask">
+             (keyup.enter)="createTask(taskForm.value)"
+             [(ngModel)]="currentTask">
     </mat-form-field>
   </form>
   <button mat-raised-button color="primary"
@@ -15,6 +16,8 @@
     ADD
   </button>
 </div>
+
+<!--DRAG&DROP-->
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <app-task

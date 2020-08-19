@@ -3,7 +3,7 @@ import {Task} from "../../interfaces/task";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowledgement-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {ApiService} from "../../../core/services/api.service";
+import {ApiService} from "../../../core/services/api-service/api.service";
 import {FormControl} from "@angular/forms";
 
 @Component({
