@@ -2,7 +2,7 @@ import {Deserializable} from "./deserializable";
 
 export class User implements Deserializable {
   id: number;
-  name: string;
+  username: string;
   password: string;
 
   deserialize(input: object) {

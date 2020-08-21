@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth-service/auth.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {User} from "../../shared/interfaces/user";
 
 @Component({
   selector: 'app-register',
@@ -10,6 +12,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent {
   hide = true;
+  errors: string[] = [];
   newUserForm = this.formBuilder.group({
     username: ['', Validators.required],
     email: ['', [Validators.email, Validators.required]],
@@ -19,7 +22,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
   }
 
@@ -30,10 +34,19 @@ export class RegisterComponent {
         ...this.newUserForm.value
       };
       this.api.createNewUserData(newUserData)
-        .subscribe(() => {
-            this.router.navigateByUrl('auth/login')
-          },
-          error => console.log('error: ', error))
+        .subscribe((response: User) => {
+          console.log(response)
+          this.router.navigateByUrl('auth/login');
+          this.toastr.success(`User ${response.username} has been created!`)
+        }, error => {
+          Object.values(error.error).forEach((err: string) => {
+            this.errors.push(err)
+          });
+          this.errors.forEach(error => {
+            this.toastr.warning(error);
+          })
+          this.errors = [];
+        })
     }
   }
 }

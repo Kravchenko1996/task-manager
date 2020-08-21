@@ -31,7 +31,6 @@ export class TodoListsComponent implements OnInit {
   getToDoLists(): void {
     this.api.getToDoListsData()
       .subscribe((response: ToDoList[]) => {
-        console.log(response)
         this.toDoLists = response
       });
   }

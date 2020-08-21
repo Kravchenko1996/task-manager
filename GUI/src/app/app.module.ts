@@ -30,6 +30,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {LogoutComponent} from './pages/logout/logout.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {ApiInterceptor} from "./core/http.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {ApiInterceptor} from "./core/http.interceptor";
     MatNativeDateModule,
     MatCheckboxModule,
     MatToolbarModule,
-    DragDropModule
+    DragDropModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

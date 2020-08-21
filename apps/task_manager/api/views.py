@@ -30,10 +30,11 @@ class DeleteToDoListAPIView(DestroyAPIView):
 
 class TasksListAPIView(ListAPIView):
     serializer_class = TaskListSerializer
+    queryset = Task.objects.order_by('order')
 
-    def get_queryset(self):
-        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
-        return Task.objects.filter(project_id=self.kwargs[lookup_url_kwarg])
+    # def get_queryset(self):
+    #     lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+    #     return Task.objects.filter(project_id=self.kwargs[lookup_url_kwarg])
 
 
 class TaskCreateAPIView(CreateAPIView):

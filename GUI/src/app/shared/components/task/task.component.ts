@@ -14,9 +14,9 @@ import {FormControl} from "@angular/forms";
 export class TaskComponent implements OnInit, OnChanges {
 
   @Input() task: Task;
-  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
   tasksList: Task[] = [];
   deadline = new FormControl();
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     public dialog: MatDialog,
@@ -25,6 +25,7 @@ export class TaskComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    // console.log('onInit: ',this.task)
     if (this.task.deadline) {
       this.deadline.setValue(this.task.deadline)
     }
@@ -40,8 +41,17 @@ export class TaskComponent implements OnInit, OnChanges {
     });
     dialogWindow.afterClosed()
       .subscribe((task: Task) => {
+        // console.log('Subscribe in editTask func: ', task)
         if (task) this.updateTask();
       })
+  }
+
+  updateTask() {
+    this.api.sendEditedTaskData(this.task)
+      .subscribe((res) => {
+        // console.log('Send task: ', res);
+        this.onUpdate.emit()
+      });
   }
 
   deleteTask(): void {
@@ -72,10 +82,4 @@ export class TaskComponent implements OnInit, OnChanges {
       this.updateTask();
     }
   }
-
-  updateTask() {
-    this.api.sendEditedTaskData(this.task)
-        .subscribe(() => this.onUpdate.emit());
-  }
-
 }

@@ -12,12 +12,13 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker (closed)="setTaskDeadline()"></mat-datepicker>
   </mat-form-field>
-
+<p>{{task.order}}</p>
   <button mat-icon-button aria-label="edit" class="edit-btn" (click)="editTask()">
     <mat-icon>edit</mat-icon>
   </button>
   <button mat-icon-button aria-label="delete" class="del-btn" (click)="deleteTask()">
     <mat-icon>delete</mat-icon>
   </button>
+
 </mat-toolbar>
 <mat-divider></mat-divider>

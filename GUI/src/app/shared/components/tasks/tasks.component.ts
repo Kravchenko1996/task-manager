@@ -12,7 +12,6 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 })
 export class TasksComponent implements OnInit {
 
-  task: Task;
   currentTask: string;
   @Input() toDoListId;
   tasksList: Task[] = [];
@@ -48,10 +47,17 @@ export class TasksComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    // console.log(event.previousContainer.element.nativeElement.children);
     moveItemInArray(this.tasksList, event.previousIndex, event.currentIndex);
+
   }
 
-  print(event) {
-    console.log(event)
+  changeTaskOrder(event: CdkDragDrop<string[]>, task: Task) {
+    console.log('before: ', task);
+    if (task.order != event.currentIndex) {
+      task.order = event.currentIndex;
+      this.api.sendEditedTaskData(task)
+        .subscribe(res => console.log('after: ', res));
+    }
   }
 }

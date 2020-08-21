@@ -9,11 +9,13 @@
         <mat-form-field appearance="fill">
           <mat-label>Enter your username</mat-label>
           <input matInput placeholder="Username" required formControlName="username" aria-label="username">
+          <mat-error *ngIf="newUserForm.controls.username.errors">This field is required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Enter your email</mat-label>
           <input matInput placeholder="Email" required formControlName="email" aria-label="email">
+          <mat-error *ngIf="newUserForm.controls.email.errors">This field is required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -25,6 +27,7 @@
                   [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+          <mat-error *ngIf="newUserForm.controls.password.errors">This field is required!</mat-error>
         </mat-form-field>
       </form>
     </mat-card-content>

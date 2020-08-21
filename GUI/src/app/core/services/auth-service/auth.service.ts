@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpRequest, HttpResponse} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {User} from "../../../shared/interfaces/user";
 import {environment} from "../../../../environments/environment";
 import {LoginResponse} from "../../../shared/interfaces/http-responses";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   apiUrl = 'http://127.0.0.1:8000/api/v2beta';
+  public token: string;
 
   constructor(
     private httpClient: HttpClient
@@ -22,20 +23,20 @@ export class AuthService {
       .pipe(map((response) => new User().deserialize(response)));
   }
 
-  loginUser(body): Subject<boolean> {
-    let success$ = new Subject<boolean>();
-    this.httpClient.post(this.apiUrl + '/api-token-auth/', body)
-      .subscribe(
-        (response: LoginResponse) => {
-          this.saveToken(response.token);
-          success$.next(true);
-          success$.complete();
-        },
-        error => {
-          success$.next(false);
-          success$.complete();
-        })
-    return success$;
+  loginUser(body): Observable<LoginResponse> {
+    return this.httpClient.post(this.apiUrl + '/api-token-auth/', body)
+      .pipe(map((response: LoginResponse)  => {
+        this.saveToken(response.token);
+        return response;
+      }))
+  }
+
+  refreshToken(body): Observable<object> {
+    return this.httpClient.post(this.apiUrl + '/api-token-refresh/', body)
+  }
+
+  updateData(token) {
+    this.token = token;
   }
 
   saveToken(token: string): void {

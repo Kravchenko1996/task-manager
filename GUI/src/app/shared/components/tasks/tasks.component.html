@@ -1,4 +1,4 @@
-<div class="create-task">
+  <div class="create-task">
   <form class="mat-form-field">
     <mat-form-field>
       <mat-label>Task</mat-label>
@@ -23,8 +23,10 @@
   <app-task
     *ngFor="let task of tasksList"
     [task]="task"
+    [cdkDragData]="task"
+
     (onUpdate)="getTasks()"
-    cdkDrag (cdkDragDropped)="print($event)">
+    cdkDrag (cdkDragDropped)="changeTaskOrder($event, task)">
   </app-task>
 </div>
 
