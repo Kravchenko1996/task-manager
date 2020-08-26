@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ToDoList} from '../../../shared/interfaces/todo-list';
 import {Task} from '../../../shared/interfaces/task';
-import {map} from "rxjs/operators";
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,16 @@ export class ApiService {
 
   sendNewToDoListData(formData): any {
     return this.httpClient.post(this.apiUrl + '/create-todo-list', formData)
-      .pipe(map((response) => new ToDoList().deserialize(response)));
+      .pipe(map((response) => new ToDoList()
+        .deserialize(response)
+      ));
   }
 
   sendEditedToDoListData(toDoList: ToDoList) {
     return this.httpClient.put(this.apiUrl + '/edit-todo-list/' + toDoList.id.toString(), toDoList)
-      .pipe(map((response) => new ToDoList().deserialize(response)));
+      .pipe(map((response) => new ToDoList()
+        .deserialize(response)
+      ));
   }
 
   deleteToDoListData(toDoListId) {
@@ -42,17 +46,24 @@ export class ApiService {
   getTasksData(toDoListId): any {
     return this.httpClient.get(this.apiUrl + '/tasks/' + toDoListId.toString())
       .pipe(map((response: any) => (
-        response.map((task: Task) => new Task().deserialize(task)))));
+        response
+          .map((task: Task) => new Task()
+            .deserialize(task)
+          ))));
   }
 
   sendNewTaskData(formData) {
     return this.httpClient.post(this.apiUrl + '/create-tasks', formData)
-      .pipe(map((response) => new Task().deserialize(response)));
+      .pipe(map((response) => new Task()
+        .deserialize(response)
+      ));
   }
 
   sendEditedTaskData(task: Task) {
     return this.httpClient.put(this.apiUrl + '/edit-task/' + task.id.toString(), task)
-      .pipe(map((response) => new Task().deserialize(response)));
+      .pipe(map((response) => new Task()
+        .deserialize(response)
+      ));
   }
 
   deleteTaskData(taskId) {

@@ -8,13 +8,14 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Enter your username</mat-label>
-          <input matInput placeholder="Username" required formControlName="username">
-<!--          <mat-error *ngIf="loginForm.controls.name.errors">This field is required!</mat-error>-->
+          <input matInput placeholder="Username" required formControlName="username" aria-label="username">
+          <mat-error *ngIf="loginForm.controls.username.errors">This field is required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" aria-label="password">
+          <mat-error *ngIf="loginForm.controls.password.errors">This field is required!</mat-error>
           <button mat-icon-button matSuffix
                   (click)="hide = !hide"
                   [attr.aria-label]="'Hide password'"

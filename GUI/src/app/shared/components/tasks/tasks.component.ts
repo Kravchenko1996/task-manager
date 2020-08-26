@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ApiService} from "../../../core/services/api-service/api.service";
+import {ApiService} from '../../../core/services/api-service/api.service';
 import {Task} from '../../interfaces/task';
-import {FormControl} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {FormControl} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-tasks',
@@ -29,35 +29,50 @@ export class TasksComponent implements OnInit {
 
   getTasks(): void {
     this.api.getTasksData(this.toDoListId)
-      .subscribe((response: Task[]) => this.tasksList = response)
+      .subscribe(
+        (response: Task[]) => this.tasksList = response
+      );
   }
 
-  createTask(newTask): void {
-    if (newTask) {
+  createTask(newTaskName: string): void {
+    if (newTaskName) {
       let newTaskData = {
-        name: newTask,
+        name: newTaskName,
         project: this.toDoListId
-      }
+      };
       this.api.sendNewTaskData(newTaskData)
         .subscribe(response => {
-          this.tasksList.push(response)
-          this.currentTask = '';
-        })
+          this.tasksList.push(response);
+          this.currentTask = undefined;
+        });
     }
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    // console.log(event.previousContainer.element.nativeElement.children);
-    moveItemInArray(this.tasksList, event.previousIndex, event.currentIndex);
-
   }
 
   changeTaskOrder(event: CdkDragDrop<string[]>, task: Task) {
-    console.log('before: ', task);
     if (task.order != event.currentIndex) {
-      task.order = event.currentIndex;
-      this.api.sendEditedTaskData(task)
-        .subscribe(res => console.log('after: ', res));
+      moveItemInArray(this.tasksList, event.previousIndex, event.currentIndex);
+      this.tasksList
+        .forEach(
+          (task, index) => {
+            task.order = index;
+            this.api.sendEditedTaskData(task)
+              .subscribe(
+              );
+          });
     }
+  }
+
+  refreshTask(task: Task): void {
+    let oldTask = this.tasksList.find(
+      (oldTask) => task.id == oldTask.id
+    );
+    let index = this.tasksList.indexOf(oldTask);
+    this.tasksList[index] = task;
+  }
+
+  removeTask(taskId: number): void {
+    this.tasksList = this.tasksList.filter(
+      (task) => task.id != taskId
+    );
   }
 }

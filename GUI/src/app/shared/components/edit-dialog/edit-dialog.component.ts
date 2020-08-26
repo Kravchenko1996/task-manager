@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-todo-list-dialog',
@@ -20,10 +20,10 @@ export class EditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemForm = this.formBuilder.group({
-      id: [this.data.id],
+      id: [this.data.id, Validators.required],
       name: [this.data.name, Validators.required],
-      project_id: [this.data.project]
-    })
+      project: [this.data.project]
+    });
   }
 
   onCancel(): void {
@@ -35,5 +35,4 @@ export class EditDialogComponent implements OnInit {
       this.dialogRef.close(this.itemForm.value);
     }
   }
-
 }

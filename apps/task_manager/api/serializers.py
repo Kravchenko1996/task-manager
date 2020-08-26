@@ -6,7 +6,7 @@ from apps.task_manager.models import Project, Task
 class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'user']
 
 
 class TaskSerializer(ModelSerializer):

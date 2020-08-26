@@ -1,4 +1,4 @@
-import {Deserializable} from "./deserializable";
+import {Deserializable} from './deserializable';
 
 export class ToDoList implements Deserializable {
   id: number;

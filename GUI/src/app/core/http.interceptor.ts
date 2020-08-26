@@ -6,9 +6,9 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {AuthService} from "./services/auth-service/auth.service";
-import {catchError, switchMap} from "rxjs/operators";
-import {Router} from "@angular/router";
+import {AuthService} from './services/auth-service/auth.service';
+import {catchError, switchMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -32,10 +32,10 @@ export class ApiInterceptor implements HttpInterceptor {
           this.auth.saveToken(refreshedToken);
           const headers = {
             Authorization: `JWT ${refreshedToken}`
-          }
-          request = request.clone({setHeaders: headers})
+          };
+          request = request.clone({setHeaders: headers});
           return next.handle(request);
-        }))
+        }));
     }
 
     return next.handle(request);
@@ -46,10 +46,8 @@ export class ApiInterceptor implements HttpInterceptor {
       .pipe(
         catchError(
           error => {
-            console.log(error)
             if (
-              error.status == 401
-              || error.status == 400
+              error.status == 401 || error.status == 400 && request.url.endsWith('api-token-refresh/')
             ) {
               this.router.navigateByUrl('/auth/login');
             } else {

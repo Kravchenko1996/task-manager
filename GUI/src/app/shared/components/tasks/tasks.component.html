@@ -3,6 +3,7 @@
     <mat-form-field>
       <mat-label>Task</mat-label>
       <input matInput
+             aria-label="task"
              placeholder="Start typing here to create a task..."
              name="newTask"
              #taskForm
@@ -19,13 +20,13 @@
 
 <!--DRAG&DROP-->
 
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+<div cdkDropList class="example-list">
   <app-task
     *ngFor="let task of tasksList"
     [task]="task"
     [cdkDragData]="task"
-
-    (onUpdate)="getTasks()"
+    (onUpdate)="refreshTask($event)"
+    (onDelete)="removeTask($event)"
     cdkDrag (cdkDragDropped)="changeTaskOrder($event, task)">
   </app-task>
 </div>

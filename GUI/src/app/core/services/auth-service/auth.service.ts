@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpRequest, HttpResponse} from "@angular/common/http";
-import {map} from "rxjs/operators";
-import {User} from "../../../shared/interfaces/user";
-import {environment} from "../../../../environments/environment";
-import {LoginResponse} from "../../../shared/interfaces/http-responses";
-import {Observable, Subject} from "rxjs";
+import {HttpClient, HttpRequest, HttpResponse} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {User} from '../../../shared/interfaces/user';
+import {environment} from '../../../../environments/environment';
+import {LoginResponse} from '../../../shared/interfaces/http-responses';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,35 +20,33 @@ export class AuthService {
 
   createNewUserData(formData: any) {
     return this.httpClient.post(this.apiUrl + '/users/', formData)
-      .pipe(map((response) => new User().deserialize(response)));
+      .pipe(map((response) => new User()
+        .deserialize(response)
+      ));
   }
 
   loginUser(body): Observable<LoginResponse> {
     return this.httpClient.post(this.apiUrl + '/api-token-auth/', body)
-      .pipe(map((response: LoginResponse)  => {
+      .pipe(map((response: LoginResponse) => {
         this.saveToken(response.token);
         return response;
-      }))
+      }));
   }
 
   refreshToken(body): Observable<object> {
-    return this.httpClient.post(this.apiUrl + '/api-token-refresh/', body)
-  }
-
-  updateData(token) {
-    this.token = token;
+    return this.httpClient.post(this.apiUrl + '/api-token-refresh/', body);
   }
 
   saveToken(token: string): void {
-    localStorage.setItem(environment.tokenKeyName, token)
+    localStorage.setItem(environment.tokenKeyName, token);
   }
 
   getToken(): string {
-    return localStorage.getItem(environment.tokenKeyName)
+    return localStorage.getItem(environment.tokenKeyName);
   }
 
   purgeToken(): void {
-    localStorage.removeItem(environment.tokenKeyName)
+    localStorage.removeItem(environment.tokenKeyName);
   }
 }
 

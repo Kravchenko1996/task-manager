@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
-from rest_framework.permissions import IsAuthenticated
 
 from apps.task_manager.api.serializers import ProjectSerializer, TaskSerializer, TaskListSerializer
 from apps.task_manager.models import Project, Task
@@ -12,11 +11,17 @@ def home_page(request):
 
 class ToDoListsListAPIView(ListAPIView):
     serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+
+    def get_queryset(self):
+        return Project.objects.filter(user=self.request.user)
 
 
 class CreateToDoListAPIView(CreateAPIView):
     serializer_class = ProjectSerializer
+
+    def post(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        return self.create(request, *args, **kwargs)
 
 
 class EditToDoListAPIVIew(UpdateAPIView):
@@ -30,11 +35,10 @@ class DeleteToDoListAPIView(DestroyAPIView):
 
 class TasksListAPIView(ListAPIView):
     serializer_class = TaskListSerializer
-    queryset = Task.objects.order_by('order')
 
-    # def get_queryset(self):
-    #     lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
-    #     return Task.objects.filter(project_id=self.kwargs[lookup_url_kwarg])
+    def get_queryset(self):
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        return Task.objects.filter(project_id=self.kwargs[lookup_url_kwarg]).order_by('order')
 
 
 class TaskCreateAPIView(CreateAPIView):

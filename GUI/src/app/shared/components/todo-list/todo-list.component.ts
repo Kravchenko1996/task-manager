@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
-import {ApiService} from "../../../core/services/api-service/api.service";
-import {ToDoList} from "../../interfaces/todo-list";
-import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
-import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowledgement-dialog.component";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {FormBuilder} from '@angular/forms';
+import {ApiService} from '../../../core/services/api-service/api.service';
+import {ToDoList} from '../../interfaces/todo-list';
+import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
+import {AcknowledgementDialogComponent} from '../acknowledgement-dialog/acknowledgement-dialog.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +14,8 @@ import {AcknowledgementDialogComponent} from "../acknowledgement-dialog/acknowle
 export class TodoListComponent {
 
   @Input() toDoList: ToDoList;
-  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onUpdate: EventEmitter<ToDoList> = new EventEmitter<ToDoList>();
+  @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     public dialog: MatDialog,
@@ -30,8 +31,15 @@ export class TodoListComponent {
     });
     dialogWindow.afterClosed()
       .subscribe((toDoList: ToDoList) => {
-        if (toDoList) this.updateToDoList();
-      })
+        if (toDoList) {
+          this.updateToDoList(toDoList);
+        }
+      });
+  }
+
+  updateToDoList(toDoList: ToDoList) {
+    this.api.sendEditedToDoListData(toDoList)
+      .subscribe((result) => this.onUpdate.emit(result));
   }
 
   deleteToDoList(): void {
@@ -43,13 +51,8 @@ export class TodoListComponent {
       .subscribe((result: boolean) => {
         if (result) {
           this.api.deleteToDoListData(this.toDoList.id)
-            .subscribe(() => this.onUpdate.emit())
+            .subscribe(() => this.onDelete.emit(this.toDoList.id));
         }
-      })
-  }
-
-  updateToDoList() {
-    this.api.sendEditedToDoListData(this.toDoList)
-      .subscribe(() => this.onUpdate.emit());
+      });
   }
 }

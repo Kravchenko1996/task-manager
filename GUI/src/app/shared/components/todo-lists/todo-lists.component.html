@@ -2,7 +2,8 @@
   class="toDoCard"
   *ngFor="let toDoList of toDoLists"
   [toDoList]="toDoList"
-  (onUpdate)="this.getToDoLists()">
+  (onUpdate)="refreshToDoList($event)"
+  (onDelete)="removeToDoList($event)">
 </app-todo-list>
 <div class="add-div">
   <button mat-flat-button color="primary" class='add-btn' (click)="createToDoList()">Add TODO List</button>

@@ -1,5 +1,5 @@
-import {Deserializable} from "./deserializable";
-import {ToDoList} from "./todo-list";
+import {Deserializable} from './deserializable';
+import {ToDoList} from './todo-list';
 
 export class Task implements Deserializable {
   id: number;
@@ -7,7 +7,7 @@ export class Task implements Deserializable {
   status: boolean;
   deadline: string;
   toDoList: ToDoList;
-  order: number = 0;
+  order: number;
 
   deserialize(input: object) {
     Object.assign(this, input);

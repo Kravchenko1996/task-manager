@@ -2,7 +2,7 @@
   <p>Name your list</p>
   <mat-form-field>
     <mat-label>ToDo List</mat-label>
-    <input matInput [(ngModel)]="data.name">
+    <input matInput [(ngModel)]="data.name" aria-label="name">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
@@ -10,5 +10,6 @@
   <button mat-raised-button
           color="primary"
           [mat-dialog-close]="data.name"
-          [disabled]="!data.name">Submit</button>
+          [disabled]="!data.name">Submit
+  </button>
 </div>

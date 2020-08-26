@@ -2,11 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TodoListsComponent} from './shared/components/todo-lists/todo-lists.component';
 import {AuthComponent} from './pages/auth/auth.component';
-import {LoginComponent} from "./pages/login/login.component";
-import {LogoutComponent} from "./pages/logout/logout.component";
-import {MainComponent} from "./pages/main/main.component";
-import {RegisterComponent} from "./pages/register/register.component";
-import {AuthGuard} from "./core/auth.guard";
+import {LoginComponent} from './pages/login/login.component';
+import {MainComponent} from './pages/main/main.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {AuthGuard} from './core/auth.guard';
 
 const routes: Routes = [
   {
@@ -31,10 +30,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
-      }, {
-        path: 'logout',
-        component: LogoutComponent
-      },
+      }
     ]
   },
 ];
