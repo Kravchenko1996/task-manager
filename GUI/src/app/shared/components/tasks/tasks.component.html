@@ -22,6 +22,7 @@
 
 <div cdkDropList class="example-list">
   <app-task
+    @fade
     *ngFor="let task of tasksList"
     [task]="task"
     [cdkDragData]="task"

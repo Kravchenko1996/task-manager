@@ -4,11 +4,13 @@ import {Task} from '../../interfaces/task';
 import {FormControl} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {fade} from '../../../core/animations/animations';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
+  animations: [fade]
 })
 export class TasksComponent implements OnInit {
 
@@ -57,6 +59,7 @@ export class TasksComponent implements OnInit {
             task.order = index;
             this.api.sendEditedTaskData(task)
               .subscribe(
+                // TODO errors
               );
           });
     }

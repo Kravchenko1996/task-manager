@@ -30,3 +30,10 @@ body {
 .del-btn:hover {
   color: $error;
 }
+
+.mat-dialog-content {
+  text-align: center;
+}
+.mat-dialog-actions {
+ justify-content: space-around;
+}
