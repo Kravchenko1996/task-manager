@@ -24,7 +24,7 @@ SECRET_KEY = 'qbr4mdjk*of%45zypq3c)dtp+75^(1(x64*l_$ae8!2%q6%qxf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rubygarage-task-manager.herokuapp.com ']
 
 # Application definition
 
@@ -121,8 +121,8 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
