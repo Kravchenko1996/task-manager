@@ -16,7 +16,7 @@ export class ApiService {
   }
 
   getToDoListsData(): any {
-    return this.httpClient.get(this.apiUrl + '/todo-lists')
+    return this.httpClient.get(this.apiUrl + '/projects')
       .pipe(map((response: ToDoList[]) =>
         response
           .map(
@@ -26,21 +26,21 @@ export class ApiService {
   }
 
   sendNewToDoListData(formData): any {
-    return this.httpClient.post(this.apiUrl + '/create-todo-list', formData)
+    return this.httpClient.post(this.apiUrl + '/create-project', formData)
       .pipe(map((response) => new ToDoList()
         .deserialize(response)
       ));
   }
 
   sendEditedToDoListData(toDoList: ToDoList) {
-    return this.httpClient.put(this.apiUrl + '/edit-todo-list/' + toDoList.id.toString(), toDoList)
+    return this.httpClient.put(this.apiUrl + '/edit-project/' + toDoList.id.toString(), toDoList)
       .pipe(map((response) => new ToDoList()
         .deserialize(response)
       ));
   }
 
   deleteToDoListData(toDoListId) {
-    return this.httpClient.delete(this.apiUrl + '/delete-todo-list/' + toDoListId.toString());
+    return this.httpClient.delete(this.apiUrl + '/delete-project/' + toDoListId.toString());
   }
 
   getTasksData(toDoListId): any {
