@@ -9,6 +9,12 @@ class ProjectSerializer(ModelSerializer):
         fields = ['id', 'name', 'user']
 
 
+class EditProjectSerializer(ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['id', 'name']
+
+
 class TaskSerializer(ModelSerializer):
     class Meta:
         model = Task

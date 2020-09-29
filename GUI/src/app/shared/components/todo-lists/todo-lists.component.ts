@@ -8,7 +8,7 @@ import {ApiService} from '../../../core/services/api-service/api.service';
 @Component({
   selector: 'app-todo-lists',
   templateUrl: './todo-lists.component.html',
-  styleUrls: ['./todo-lists.component.scss']
+  styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
 

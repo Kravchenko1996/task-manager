@@ -53,7 +53,7 @@ export class ApiService {
   }
 
   sendNewTaskData(formData) {
-    return this.httpClient.post(this.apiUrl + '/create-tasks', formData)
+    return this.httpClient.post(this.apiUrl + '/create-task', formData)
       .pipe(map((response) => new Task()
         .deserialize(response)
       ));
@@ -67,6 +67,6 @@ export class ApiService {
   }
 
   deleteTaskData(taskId) {
-    return this.httpClient.delete(this.apiUrl + '/delete-tasks/' + taskId.toString());
+    return this.httpClient.delete(this.apiUrl + '/delete-task/' + taskId.toString());
   }
 }

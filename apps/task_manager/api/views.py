@@ -1,22 +1,18 @@
-from django.http import HttpResponse
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 
-from apps.task_manager.api.serializers import ProjectSerializer, TaskSerializer, TaskListSerializer
+from apps.task_manager.api.serializers import ProjectSerializer, TaskSerializer, TaskListSerializer, \
+    EditProjectSerializer
 from apps.task_manager.models import Project, Task
 
 
-def home_page(request):
-    return HttpResponse("Hello, world!")
-
-
-class ToDoListsListAPIView(ListAPIView):
+class ProjectsListAPIView(ListAPIView):
     serializer_class = ProjectSerializer
 
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 
 
-class CreateToDoListAPIView(CreateAPIView):
+class CreateProjectAPIView(CreateAPIView):
     serializer_class = ProjectSerializer
 
     def post(self, request, *args, **kwargs):
@@ -24,12 +20,12 @@ class CreateToDoListAPIView(CreateAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class EditToDoListAPIVIew(UpdateAPIView):
-    serializer_class = ProjectSerializer
+class EditProjectAPIVIew(UpdateAPIView):
+    serializer_class = EditProjectSerializer
     queryset = Project.objects.all()
 
 
-class DeleteToDoListAPIView(DestroyAPIView):
+class DeleteProjectAPIView(DestroyAPIView):
     queryset = Project.objects.all()
 
 
@@ -52,4 +48,3 @@ class EditTaskAPIVIew(UpdateAPIView):
 
 class DeleteTaskAPIView(DestroyAPIView):
     queryset = Task.objects.all()
-
