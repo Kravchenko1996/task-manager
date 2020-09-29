@@ -5,6 +5,7 @@ from django.db.models import Model
 
 class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    # TODO delete unique True and test for it
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

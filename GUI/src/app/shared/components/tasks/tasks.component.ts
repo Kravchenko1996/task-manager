@@ -59,7 +59,6 @@ export class TasksComponent implements OnInit {
             task.order = index;
             this.api.sendEditedTaskData(task)
               .subscribe(
-                // TODO errors
               );
           });
     }
@@ -69,8 +68,10 @@ export class TasksComponent implements OnInit {
     let oldTask = this.tasksList.find(
       (oldTask) => task.id == oldTask.id
     );
-    let index = this.tasksList.indexOf(oldTask);
-    this.tasksList[index] = task;
+    oldTask.order = task.order;
+    oldTask.deadline = task.deadline;
+    oldTask.status = task.status;
+    oldTask.name = task.name;
   }
 
   removeTask(taskId: number): void {
