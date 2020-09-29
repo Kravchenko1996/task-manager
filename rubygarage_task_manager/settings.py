@@ -24,7 +24,7 @@ SECRET_KEY = 'qbr4mdjk*of%45zypq3c)dtp+75^(1(x64*l_$ae8!2%q6%qxf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rubygarage-task-manager.herokuapp.com ']
+ALLOWED_HOSTS = ['rubygarage-task-manager.herokuapp.com']
 
 # Application definition
 
