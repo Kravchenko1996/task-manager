@@ -1,6 +1,12 @@
-:host {
+.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card {
+  margin-top: 20px;
   display: block;
-  margin: 32px 400px;
+  width: 60%;
 }
 
 mat-card-header {

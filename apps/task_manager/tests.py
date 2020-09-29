@@ -46,15 +46,6 @@ class TodoListTestCase(BaseTaskManagerTestCase):
         self.assertIn('id', response.data)
         self.assertIn('user', response.data)
 
-    def test_failure_create_project_name_exists(self):
-        response = self.api_client.post(
-            '/api/v1beta/create-project',
-            {'name': 'test'},
-            format='json'
-        )
-
-        self.assertEqual(400, response.status_code)
-
     def test_success_edit_project_name(self):
         response = self.api_client.put(
             f'/api/v1beta/edit-project/{self.test_project.id}',
