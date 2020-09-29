@@ -3,12 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {ToDoList} from '../../../shared/interfaces/todo-list';
 import {Task} from '../../../shared/interfaces/task';
 import {map} from 'rxjs/operators';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = 'http://127.0.0.1:8000/api/v1beta';
+  apiUrl = environment.baseUrl + '/api/v1beta';
 
   constructor(
     private httpClient: HttpClient

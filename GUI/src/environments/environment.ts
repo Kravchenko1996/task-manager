@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  tokenKeyName: 'JWT'
+  tokenKeyName: 'JWT',
+  baseUrl: 'http://127.0.0.1:8000'
 };
 
 /*

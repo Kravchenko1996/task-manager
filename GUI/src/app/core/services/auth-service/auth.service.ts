@@ -10,7 +10,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  apiUrl = 'http://127.0.0.1:8000/api/v2beta';
+  apiUrl = environment.baseUrl + '/api/v2beta';
+
   public token: string;
 
   constructor(
