@@ -30,19 +30,20 @@ export class RegisterComponent implements OnInit {
   initForm(): void {
     this.newUserForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', [Validators.email, Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
   createNewUser() {
+    console.log(this.newUserForm);
     if (this.newUserForm.valid) {
       let newUserData = {
         ...this.newUserForm.value
       };
       this.api.createNewUserData(newUserData)
         .subscribe((response: User) => {
-          this.router.navigateByUrl('auth/login');
+           this.router.navigateByUrl('auth/login');
           this.toastr.success(`User ${response.username} has been created!`);
         }, error => {
           Object.values(error.error).forEach((err: string) => {

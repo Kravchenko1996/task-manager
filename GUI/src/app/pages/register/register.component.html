@@ -15,7 +15,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Enter your email</mat-label>
           <input matInput placeholder="Email" required formControlName="email" aria-label="email">
-          <mat-error *ngIf="newUserForm.controls.email.errors">This field is required!</mat-error>
+          <mat-error *ngIf="newUserForm.controls.email.errors?.required">This field is required!</mat-error>
+          <mat-error *ngIf="newUserForm.controls.email.errors?.email">Incorrect value!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
